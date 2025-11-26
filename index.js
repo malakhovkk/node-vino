@@ -1801,8 +1801,9 @@ app.get("/messages", async (req, res) => {
     } else {
       // --- Если дата передана ---
       let d = new Date(req.query.date);
+      d = subtractDays(d, 1);
       d.setHours(23, 59, 59, 999);
-
+      console.log(d);
       // находим все сообщения до конца указанной даты
       const found = await Chat.find({
         createdAt: { $lte: d },
@@ -1910,6 +1911,7 @@ app.get("/poll", async (req, res) => {
             author: m.author,
             message: m.message,
             name: author?.name || null,
+            date: m.createdAt,
           };
         })
       );
