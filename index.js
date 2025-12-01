@@ -1650,10 +1650,10 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-
+console.log(`AAAAAA ${process.env.USERNAMEDB}:${process.env.PASSWORD}`)
 // Подключение к MongoDB
 mongoose
-  .connect("mongodb://194.87.239.231:27017", {
+  .connect(`mongodb://${process.env.USERNAMEDB}:${process.env.PASSWORD}@194.87.239.231:27017/vinopark`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
