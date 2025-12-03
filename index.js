@@ -27,7 +27,7 @@ const pool = new Pool({
   user: "postgres",
   host: "194.87.238.201",
   database: "vinopark",
-  password: "Vinopark2021",
+  password: process.env.PASSWORDPOSTGRES,
   port: 5432,
 });
 
@@ -1650,13 +1650,16 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-console.log(`AAAAAA ${process.env.USERNAMEDB}:${process.env.PASSWORD}`)
+console.log(`AAAAAA ${process.env.USERNAMEDB}:${process.env.PASSWORD}`);
 // Подключение к MongoDB
 mongoose
-  .connect(`mongodb://${process.env.USERNAMEDB}:${process.env.PASSWORD}@194.87.239.231:27017/vinopark`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    `mongodb://${process.env.USERNAMEDB}:${process.env.PASSWORD}@194.87.239.231:27017/vinopark`,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => console.log("MongoDB connected"))
   .catch((err) => {
     console.error(err);
